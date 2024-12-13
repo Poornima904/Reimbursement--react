@@ -1,0 +1,70 @@
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-app-bar {
+    background-color: #f0f0f0;
+    box-shadow: none;
+}
+
+.tab-indicator {
+    background-color: black;
+}
+
+.tab-label {
+    color: black;
+}
+
+
+/* Section Styling */
+.section-box {
+    padding: 16px;
+    border-radius: 35px;
+    margin-bottom: 16px;
+    background-color: #7456560a
+}
+
+.highlighted-section {
+    border: 0px solid #13249382;
+    box-shadow: 0px 2px 4px rgba(25, 12, 144, 0.736);
+}
+
+.default-section {
+    border: 0px solid #303f9f75;
+    transition: background-color 0.3s ease;
+    /* Smooth background color transition */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 35px;
+
+}
+
+.default-section:hover {
+    background-color: #e3d9d650;
+    /* Replace with your desired hover background color */
+}
+
+.footer1 {
+    padding-left: 81%;
+}
+
+/* .MuiAppBar-colorPrimary {
+    background-color: #4d427ca1 !important;
+} */
+
+
+.MuiTableCell-head {
+    font-weight: 600 !important;
+}
+
+.MuiButton-containedPrimary:hover {
+    background-color: #cb3923e8 !important;
+    /* Change background color on hover */
+    box-shadow: 0 4px 8px rgba(150, 144, 144, 0.641) !important;
+    /* Add shadow on hover */
+    transform: translateY(-2px) !important;
+    /* Optional: slight lift effect */
+}

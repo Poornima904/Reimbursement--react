@@ -1,0 +1,25 @@
+.MuiTableCell-root {
+    font-size: 1rem !important;
+}
+.sx{
+    gap: 18px;
+    display: flex;
+    padding: 16px;
+    margin-top: 16px;
+    align-items: center;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    flex-direction: row;
+    background-color: rgb(245, 245, 245);
+}
+
+.tabContainer{
+    width: 1275px;
+    border: 2px solid rgb(63, 81, 181);
+    height: 500px;
+    display: flex;
+    padding: 1px;
+    overflow: hidden;
+    border-radius: 6px;
+    flex-direction: column;
+}

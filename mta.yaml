@@ -1,0 +1,80 @@
+_schema-version: "3.2"
+ID: reimbursement
+version: 0.0.1
+modules:
+- name: reimbursement-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: reimbursement-destination-service
+    parameters:
+      content-target: true
+  - name: reimbursement_html_repo_host
+    parameters:
+      service-key:
+        name: reimbursement_html_repo_host-key
+  - name: uaa_reimbursement
+    parameters:
+      service-key:
+        name: uaa_reimbursement-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: uniqname_reimbursement_html_repo_host
+          ServiceInstanceName: reimbursement-html5-app-host-service
+          ServiceKeyName: reimbursement_html_repo_host-key
+          sap.cloud.service: uniqname
+        - Authentication: OAuth2UserTokenExchange
+          Name: uniqname_uaa_reimbursement
+          ServiceInstanceName: reimbursement-xsuaa-service
+          ServiceKeyName: uaa_reimbursement-key
+          sap.cloud.service: uniqname
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: reimbursement_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: reimbursement_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ReimbursementModule-content.zip
+      name: ReimbursementModule
+      target-path: resources/
+- name: ReimbursementModule
+  type: html5
+  path: ReimbursementModule
+  build-parameters:
+    builder: custom
+    commands:
+    - npm install
+    - npm run build
+    supported-platforms: []
+resources:
+- name: reimbursement-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: reimbursement-destination-service
+    service-plan: lite
+- name: reimbursement_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: reimbursement-html5-app-host-service
+    service-plan: app-host
+- name: uaa_reimbursement
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: reimbursement-xsuaa-service
+    service-plan: application
